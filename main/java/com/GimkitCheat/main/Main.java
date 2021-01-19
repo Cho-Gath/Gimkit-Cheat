@@ -42,6 +42,7 @@ public class Main {
     public static void main(String[] args) {
         HashMap<String, List> answers = StartProcess();
         String question;
+        System.out.println("this compiled good");
         boolean alreadyAnswered = false;
         boolean repeat = true;
         while(repeat) {
@@ -49,11 +50,11 @@ public class Main {
                 while (repeat) {
                     //Finding the question
                     question = Driver.findText(XPathOf.question);
-                    System.out.println("Question: " + question);
+//                    System.out.println("Question: " + question);
                     //Answering if question is recognized
                     for (String key : answers.keySet()) {
                         if (key.equals(question)) {
-                            System.out.println("answer is known\n");
+//                            System.out.println("answer is known\n");
                             boolean found = false;
                             while (!found)
                                 try {
@@ -69,7 +70,7 @@ public class Main {
                     if (!alreadyAnswered) {
                         HashMap newMap = Answer.guessAnswer(answers, question);
                         if(newMap.equals(new HashMap())) {
-                            System.out.println("but we made it here and continued");
+//                            System.out.println("but we made it here and continued");
                             alreadyAnswered = false;
                             continue;
                         } else {
@@ -77,7 +78,7 @@ public class Main {
                         }
                     }
                     alreadyAnswered = false;
-                    System.out.println("bottom of loop\n");
+//                    System.out.println("bottom of loop\n");
                 }
             } catch(Exception e) {
                 ConvenientMethods.sleep(100);
