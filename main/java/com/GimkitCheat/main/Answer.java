@@ -21,14 +21,14 @@ public class Answer {
             }
             for(String o : XPathOf.AnswerButtons()) {
                 String answer = "";
-                while(answer.equals("")) {
+                while(answer.equals("") && Main.repeat) {
                     answer = Driver.findText(o);
                 }
 //                System.out.println("Button: " + answer);
                 if(answer.equals(s)) {
                     Driver.click(o);
                     boolean x = false;
-                    while(!x) {
+                    while(!x && Main.repeat) {
                         try {
                             Driver.click(XPathOf.continueAfterCorrect);
                             x = true;
@@ -66,7 +66,7 @@ public class Answer {
         }
         ConvenientMethods.sleep(400);
         char result = 'a';
-        while(!(result == '+') && !(result == '-')) {
+        while(!(result == '+') && !(result == '-') && Main.repeat) {
             try {
                 result = Driver.findText(XPathOf.moneyResult).charAt(0);
             } catch (IndexOutOfBoundsException e) {
@@ -99,7 +99,7 @@ public class Answer {
             do {
                 ConvenientMethods.sleep(100);
                 correctAnswer = Driver.findText(XPathOf.correctAnswerLocation);
-            } while(correctAnswer.equals(""));
+            } while(correctAnswer.equals("") && Main.repeat);
 //            System.out.println("Correct Answer: " + correctAnswer);
             try {
                 List newLst = new ArrayList();
@@ -134,7 +134,7 @@ public class Answer {
                         if (key.equals(question)) {
 //                            System.out.println("answer is known\n");
                             boolean found = false;
-                            while (!found)
+                            while (!found && Main.repeat)
                                 try {
                                     answers = Answer.correctly(answers, question);
                                     found = true;

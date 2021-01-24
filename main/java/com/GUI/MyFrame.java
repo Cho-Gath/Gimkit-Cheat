@@ -20,7 +20,7 @@ public class MyFrame extends JFrame implements ActionListener, WindowListener {
     JPanel titlePanel = new JPanel();
     JLabel title = new JLabel();
 
-    JTextArea link = new JTextArea("Share this program using this link:\nhttps://cho-gath.github.io/Gimkit-Cheat-Website/");
+    JTextArea link = new JTextArea("Share this program and see instructions using\nthis link:\nhttps://cho-gath.github.io/Gimkit-Cheat-Website/");
 
     public MyFrame() {
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
