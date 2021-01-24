@@ -1,9 +1,11 @@
 package com.GimkitCheat.main;
 
+import com.GimkitCheat.main.Main;
 import com.GimkitCheat.selenium.XPathOf;
 import com.GimkitCheat.selenium.Driver;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -114,6 +116,58 @@ public class Answer {
         FileStuff.save(map);
         return map;
     }
+
+
+    public static void AnswerLoop() {
+        String question;
+        HashMap<String, List> answers = ConvenientMethods.StartProcess();
+        boolean alreadyAnswered = false;
+        boolean repeat = true;
+        while(Main.repeat) {
+            try {
+                while (Main.repeat) {
+                    //Finding the question
+                    question = Driver.findText(XPathOf.question);
+//                    System.out.println("Question: " + question);
+                    //Answering if question is recognized
+                    for (String key : answers.keySet()) {
+                        if (key.equals(question)) {
+//                            System.out.println("answer is known\n");
+                            boolean found = false;
+                            while (!found)
+                                try {
+                                    answers = Answer.correctly(answers, question);
+                                    found = true;
+                                    alreadyAnswered = true;
+                                } catch (StaleElementReferenceException e) {
+                                    ConvenientMethods.sleep(100);
+                                }
+                            break;
+                        }
+                    }
+                    if (!alreadyAnswered) {
+                        HashMap newMap = Answer.guessAnswer(answers, question);
+                        if(newMap.equals(new HashMap())) {
+//                            System.out.println("but we made it here and continued");
+                            alreadyAnswered = false;
+                            continue;
+                        } else {
+                            answers = newMap;
+                        }
+                    }
+                    alreadyAnswered = false;
+//                    System.out.println("bottom of loop\n");
+                }
+            } catch(Exception e) {
+                ConvenientMethods.sleep(100);
+                //System.out.println("there was an error");
+                alreadyAnswered = false;
+            }
+        }
+        Driver.driver.quit();
+        Main.finished = true;
+    }
+
 }
 
 

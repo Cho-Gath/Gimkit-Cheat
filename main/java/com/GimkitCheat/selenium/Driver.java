@@ -2,6 +2,7 @@ package com.GimkitCheat.selenium;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -21,7 +22,12 @@ public class Driver {
         driver.findElement(By.xpath(xpath)).click();
     }
 
-    public static void close() {
-        driver.close();
+    public static boolean tryLink(String link) {
+        try {
+            Driver.openLink(link);
+            return true;
+        } catch (InvalidArgumentException e) {
+            return false;
+        }
     }
 }
