@@ -6,17 +6,21 @@ import com.GimkitCheat.selenium.Driver;
 import com.GimkitCheat.main.Answer;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.*;
 
 public class MyFrame extends JFrame implements ActionListener, WindowListener {
+    JPanel answerPanel = new JPanel();
     JButton button = new JButton("Go");
     JTextField textField = new JTextField();
-    JTextArea linkField = new JTextArea();
+
+    JPanel titlePanel = new JPanel();
+    JLabel title = new JLabel();
+
+    JTextArea link = new JTextArea("Share this program using this link:\nhttps://cho-gath.github.io/Gimkit-Cheat-Website/");
 
     public MyFrame() {
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -26,32 +30,60 @@ public class MyFrame extends JFrame implements ActionListener, WindowListener {
         this.addWindowListener(this);
 
         JPanel layer = new JPanel();
-        layer.setLayout(new FlowLayout(1, 15, 75));
+        layer.setLayout(new FlowLayout(1, 30, 20));
         layer.setBounds(0, 0, 500, 300);
         layer.setVisible(true);
         layer.setBackground( new Color(40, 40, 40));
+
+        //Title stuff
+
+        title.setFont(new Font("Helvetica", Font.BOLD, 22));
+        title.setBackground(new Color(168, 168, 168));
+        title.setText("Gimkit Cheat");
+
+        titlePanel.setFont(new Font("Helvetica", Font.BOLD, 30 ));
+        titlePanel.setLayout(new FlowLayout());
+        titlePanel.setPreferredSize(new Dimension(400, 40));
+        titlePanel.setBackground(new Color(168 ,168,168));
+
+        titlePanel.add(title);
+
+        //Answering textfeild and button
 
         button.addActionListener(this);
         button.setPreferredSize(new Dimension(60, 26));
         button.setFocusable(false);
         button.setBackground(new Color(168, 168, 168));
+        button.setBorder(BorderFactory.createLineBorder(Color.white, 2));
 
-        textField.setFont(new Font("Bank Gothic", Font.BOLD, 12));
         textField.setBackground(new Color(168, 168, 168));
         textField.setText("https://www.gimkit.com/live");
         textField.setPreferredSize(new Dimension(350, 26));
-        textField.setBorder(new EmptyBorder(0, 5, 0, 0));
+        Border border = BorderFactory.createLineBorder(Color.white, 2);
+        Border margin = new EmptyBorder(0, 20, 0, 0);
+        textField.setBorder(new CompoundBorder(border, margin));
 
-        linkField.setPreferredSize(new Dimension(400, 75));
-        linkField.setText("text");
-        linkField.setFont(new Font("Bank Gothic", Font.BOLD, 16));
-        linkField.setBackground(new Color(168, 168, 168));
-        linkField.setBorder(null);
-        linkField.setBorder(new EmptyBorder(5, 5, 5, 5));
+        answerPanel.setPreferredSize(new Dimension(400, 30));
+        answerPanel.setFont(new Font("Helvetica", Font.BOLD, 45));
+        answerPanel.setLayout(new BorderLayout());
 
-        layer.add(button);
-        layer.add(textField);
-        layer.add(linkField);
+        answerPanel.add(button, BorderLayout.WEST);
+        answerPanel.add(textField, BorderLayout.EAST);
+
+        //Bottom text (but actually bottom text not just a meme)
+
+        link.setPreferredSize(new Dimension(400, 75));
+        link.setBackground(new Color(168, 168, 168));
+        link.setBorder(new EmptyBorder(5, 5, 5, 5));
+        link.setFont(new Font("Bank Gothic", Font.BOLD, 16));
+        link.setEditable(false);
+
+
+        //puting everything together
+
+        layer.add(titlePanel);
+        layer.add(answerPanel);
+        layer.add(link);
         this.add(layer);
         this.setVisible(true);
     }
@@ -78,6 +110,9 @@ public class MyFrame extends JFrame implements ActionListener, WindowListener {
             }
         }
     }
+
+    //Window activity
+
 
     @Override
     public void windowOpened(WindowEvent e) {
@@ -129,7 +164,4 @@ public class MyFrame extends JFrame implements ActionListener, WindowListener {
     @Override
     public void windowDeactivated(WindowEvent e) {
     }
-
-
-
 }
