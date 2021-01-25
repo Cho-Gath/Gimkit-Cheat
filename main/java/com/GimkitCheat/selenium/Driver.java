@@ -2,12 +2,22 @@ package com.GimkitCheat.selenium;
 
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+
+import java.io.File;
 
 public class Driver {
-    public static WebDriver driver = new ChromeDriver();
+
+    public static WebDriver driver = new FirefoxDriver();
+
+
 
     public static void openLink(String link) {
         driver.get(link);

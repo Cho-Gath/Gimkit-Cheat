@@ -126,7 +126,9 @@ public class MyFrame extends JFrame implements ActionListener, WindowListener {
             Main.repeat = false;
             while (!complete) {
                 if (Main.finished) {
-                    Driver.driver.quit();
+                    try {
+                        Driver.driver.quit();
+                    }catch(Exception ae){}
                     System.exit(0);
                 } else {
                     ConvenientMethods.sleep(50);
@@ -134,7 +136,9 @@ public class MyFrame extends JFrame implements ActionListener, WindowListener {
             }
         } else {
             if(Main.buttonClicked) {
-                Driver.driver.quit();
+                try {
+                    Driver.driver.quit();
+                } catch(Exception ae){}
                 System.exit(0);
             } else {
                 System.exit(0);

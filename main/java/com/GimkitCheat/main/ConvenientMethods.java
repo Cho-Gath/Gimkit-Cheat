@@ -17,8 +17,8 @@ public class ConvenientMethods {
 
 
     public static HashMap<String, List> StartProcess(){
-        File f = new File("stuff\\chromedriver.exe");
-        System.setProperty("webdriver.chrome.driver", f.getAbsolutePath());
+        File f = new File("stuff\\geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", f.getAbsolutePath());
 
         HashMap<String, List> map = FileStuff.read();
         if(map == null) {

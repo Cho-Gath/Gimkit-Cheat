@@ -122,7 +122,6 @@ public class Answer {
         String question;
         HashMap<String, List> answers = ConvenientMethods.StartProcess();
         boolean alreadyAnswered = false;
-        boolean repeat = true;
         while(Main.repeat) {
             try {
                 while (Main.repeat) {
