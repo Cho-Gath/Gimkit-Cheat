@@ -15,7 +15,6 @@ public class ConvenientMethods {
         } catch(InterruptedException e) {}
     }
 
-
     public static HashMap<String, List> StartProcess(){
         File f = new File("stuff\\geckodriver.exe");
         System.setProperty("webdriver.gecko.driver", f.getAbsolutePath());
